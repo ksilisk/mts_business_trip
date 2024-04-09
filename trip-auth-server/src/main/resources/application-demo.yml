@@ -1,0 +1,41 @@
+springdoc:
+  paths-to-match: /api/**
+  swagger-ui:
+    path: /docs/swagger-ui.html
+  api-docs:
+    path: /docs/api-docs
+spring:
+  application:
+    name: "trip-auth-server"
+  flyway:
+    enabled: true
+  security:
+    oauth2:
+      authorizationserver:
+        client:
+          frontend-client:
+            registration:
+              client-id: "front"
+              client-secret: "{noop}test"
+              authorization-grant-types:
+                - "client_credentials"
+              client-authentication-methods:
+                - "client_secret_basic"
+              scopes:
+                - openid
+        issuer: "http://localhost:9191"
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mts_hack
+    username: shaliko
+    password: shaliko
+server:
+  port: 9191
+
+debug: true
+logging:
+  level:
+    org:
+      springframework:
+        web: TRACE
+        security: TRACE
