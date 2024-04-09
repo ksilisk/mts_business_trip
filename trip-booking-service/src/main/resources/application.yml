@@ -1,1 +1,12 @@
-spring.application.name=trip-booking-service
+spring:
+  application:
+    name: trip-booking-service
+  profiles:
+    active: default
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bookingdb
+    username: postgres
+    password: 123321nm
+
+server:
+  port: 7777
