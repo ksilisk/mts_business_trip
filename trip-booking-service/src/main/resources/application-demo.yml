@@ -1,0 +1,19 @@
+springdoc:
+  paths-to-match: /api/**
+  swagger-ui:
+    path: /docs/swagger-ui.html
+  api-docs:
+    path: /docs/api-docs
+spring:
+  application:
+    name: trip-booking-service
+  flyway:
+    enabled: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mts_hack_booking
+    username: shaliko
+    password: shaliko
+
+server:
+  port: 7171

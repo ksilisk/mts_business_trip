@@ -1,0 +1,5 @@
+INSERT INTO roles(role)
+VALUES ('EMPLOYEE');
+
+INSERT INTO roles(role)
+VALUES ('ACCOUNTANT');

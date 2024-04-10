@@ -8,9 +8,9 @@
         <version>${business.trip.project.version}</version>
     </parent>
 
-    <artifactId>trip-booking-service</artifactId>
+    <artifactId>trip-employee-directory</artifactId>
     <version>${business.trip.project.version</version>
-    <name>trip-booking-service</name>
+    <name>trip-employee-directory</name>
 
     <properties>
         <java.version>17</java.version>
@@ -30,12 +30,12 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
