@@ -1,0 +1,27 @@
+springdoc:
+  paths-to-match:
+    - /api/**
+  swagger-ui:
+    path: /docs/swagger-ui.html
+  api-docs:
+    path: /docs/api-docs
+spring:
+  application:
+    name: trip-employee-directory
+  flyway:
+    enabled: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mts_hack_directory
+    username: test
+    password: test
+server:
+  port: 6161
+
+debug: true
+logging:
+  level:
+    org:
+      springframework:
+        web: TRACE
+        security: TRACE
