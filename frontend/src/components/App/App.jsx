@@ -8,6 +8,7 @@ import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import { useEffect, useState } from "react";
 import CurrentUserContext from '../../context/CurrentUserContext';
 import Preloader from '../Preloader/Preloader';
+import ApplicationForm from '../ApplicationForm/ApplicationForm';
 
 function App() {
 
@@ -20,14 +21,10 @@ function App() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const footer =
-    pathname === "/" || 
-    pathname === "/movies" || 
-    pathname === "/saved-movies";
 
   const header =
     pathname === "/" ||
-    pathname === "/movies" ||
+    pathname === "/application" ||
     pathname === "/saved-movies" ||
     pathname === "/profile";
 
@@ -99,6 +96,9 @@ function App() {
       <Routes>
         <Route path='/' element={
           <Main/>
+        }/>
+        <Route path='/application' element={
+          <ApplicationForm/>
         }/>
         <Route path='/signin' element={
           loggedIn ? <Navigate to='/' replace /> :
