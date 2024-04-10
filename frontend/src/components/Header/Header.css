@@ -3,8 +3,12 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 18px 70px;
+  background-color: #2c2c2c;
 }
 
+.header__application {
+  margin-right: 10px;
+}
 .header__home {
   background-color: #2c2c2c;
 }
