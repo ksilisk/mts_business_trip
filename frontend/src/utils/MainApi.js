@@ -1,5 +1,5 @@
 export const BASE_URL = 'http://localhost:9191';
-export const MAIN_BACKEND = 'http://localhost:6161'
+export const MAIN_BACKEND = 'http://localhost:8181'
 
 function checkResponse(res) {
   if (res.ok) {

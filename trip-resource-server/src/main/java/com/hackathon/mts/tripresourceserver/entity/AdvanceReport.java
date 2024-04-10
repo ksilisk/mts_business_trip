@@ -15,9 +15,9 @@ public class AdvanceReport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "application_id")
-    private int applicationId;
+//    @OneToOne
+//    @JoinColumn(name = "application_id")
+    private Integer applicationId;
 
     @Column(name = "description")
     private String description;
