@@ -21,7 +21,7 @@ public class Customer {
     private String surname;
 
     @Column(name = "customer_patronymic")
-    private String otchestvo;
+    private String patronymic;
 
     @Column(name = "passport_data")
     private String passportData;

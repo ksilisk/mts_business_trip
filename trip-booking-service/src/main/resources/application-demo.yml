@@ -14,6 +14,12 @@ spring:
     url: jdbc:postgresql://localhost:5432/mts_hack_booking
     username: test
     password: test
+  jpa:
+    show-sql: true
 
 server:
   port: 7171
+
+
+
+

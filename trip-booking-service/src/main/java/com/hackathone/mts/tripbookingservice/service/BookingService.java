@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @Transactional(readOnly = true)
@@ -20,14 +21,15 @@ public class BookingService {
     private final CustomerService customerService;
     private final RoomService roomService;
     private final FlightService flightService;
+    private final Random random;
 
     public List<Booking> getCustomersBooking(Customer customer){
         return bookingRepository.findByCustomer(customer).orElseThrow();
     }
 
     @Transactional()
-    public void addBooking(BookingDTO bookingDTO){
-        bookingRepository.save(convertToBooking(bookingDTO));
+    public Booking addBooking(BookingDTO bookingDTO){
+        return bookingRepository.save(convertToBooking(bookingDTO));
     }
 
     public Booking convertToBooking(BookingDTO bookingDTO){
@@ -43,5 +45,6 @@ public class BookingService {
         booking.setCheckInTime(bookingDTO.getCheckInTime());
         booking.setCheckOutTime(bookingDTO.getCheckOutTime());
         booking.setBookingDate(LocalDateTime.now(ZoneId.of("Europe/Moscow")));
+        booking.setBookingNumber(100000 + random.nextInt(900000));
     }
 }
