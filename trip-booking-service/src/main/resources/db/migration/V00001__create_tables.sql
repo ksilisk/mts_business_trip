@@ -39,10 +39,11 @@ create table IF NOT EXISTS customers
 CREATE TABLE IF NOT EXISTS bookings
 (
     id             SERIAL PRIMARY KEY,
-    room_id        INTEGER REFERENCES Rooms (id),
+    room_id        INTEGER UNIQUE REFERENCES Rooms (id),
     flight_id      INTEGER REFERENCES Flights (id),
     customer_id    INTEGER references Customers (id),
     booking_date   TIMESTAMP,
     check_in_time  timestamp,
-    check_out_time timestamp
+    check_out_time timestamp,
+    booking_number int
 );

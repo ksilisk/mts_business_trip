@@ -35,9 +35,9 @@ public class BookingController {
     @PostMapping
     public ResponseEntity<?> createBooking(@RequestBody BookingDTO bookingDTO) {
         try {
-            bookingService.addBooking(bookingDTO);
+            bookingDTO.setBookingNumber(bookingService.addBooking(bookingDTO).getBookingNumber());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing booking request");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
         return ResponseEntity.ok(bookingDTO);
     }

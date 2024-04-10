@@ -38,4 +38,7 @@ public class Booking {
     @Column(name = "check_out_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date checkOutTime;
+
+    @Column(name = "booking_number")
+    private int bookingNumber;
 }

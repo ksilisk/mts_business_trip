@@ -25,4 +25,6 @@ public class BookingDTO {
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "Europe/Moscow")
     private Date checkOutTime;
+
+    private int bookingNumber;
 }
