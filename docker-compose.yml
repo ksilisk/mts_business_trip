@@ -1,0 +1,72 @@
+version: "3"
+
+services:
+  trip-auth-server:
+    container_name: trip-auth-server
+    image: trip-auth-server:1.0
+    environment:
+      JAVA_TOOL_OPTIONS: -Dspring.config.additional-location=file:/conf/application-demo.yml
+    volumes:
+      - ./assets/auth-server-conf.yml:/conf/application-demo.yml
+    ports:
+      - "9191:9191"
+    expose:
+      - 9191
+  trip-booking-service:
+    container_name: trip-booking-service
+    image: trip-booking-service:1.0
+    environment:
+      JAVA_TOOL_OPTIONS: -Dspring.config.additional-location=file:/conf/application-demo.yml
+    volumes:
+      - ./assets/booking-service-conf.yml:/conf/application-demo.yml
+    ports:
+      - "7171:7171"
+    expose:
+      - 7171
+  trip-employee-directory:
+    container_name: trip-employee-directory
+    image: trip-employee-directory:1.0
+    environment:
+      JAVA_TOOL_OPTIONS: -Dspring.config.additional-location=file:/conf/application-demo.yml
+    volumes:
+      - ./assets/employee-directory-conf.yml:/conf/application-demo.yml
+    ports:
+      - "6161:6161"
+    expose:
+      - 6161
+  trip-resource-server:
+    container_name: trip-resource-server
+    image: trip-resource-server:1.0
+    environment:
+      JAVA_TOOL_OPTIONS: -Dspring.config.additional-location=file:/conf/application-demo.yml
+    volumes:
+      - ./assets/resource-server-conf.yml:/conf/application-demo.yml
+    ports:
+      - "8181:8181"
+    expose:
+      - 8181
+  postgres:
+    container_name: postgres
+    image: postgres:16
+    environment:
+      POSTGRES_MULTIPLE_DATABASES: mts_hack_auth,mts_hack_directory,mts_hack_resource,mts_hack_booking
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: test
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./assets/create-multiple-postgres-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U test" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+    name: trip-postgres-volume

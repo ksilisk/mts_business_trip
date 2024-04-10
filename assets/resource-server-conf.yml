@@ -7,12 +7,12 @@ spring:
         enabled: true
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/mts_hack_resource
+    url: jdbc:postgresql://postgres:5432/mts_hack_resource
     username: test
     password: test
 trip:
   url:
-    employee-directory: "http://localhost:6161"
-    booking-service: "http://localhost:7171"
+    employee-directory: "http://trip-employee-directory:6161"
+    booking-service: "http://trip-booking-service:7171"
 server:
   port: 8181
