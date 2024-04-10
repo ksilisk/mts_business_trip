@@ -1,4 +1,4 @@
-package com.hackathon.mts.dto;
+package com.hackathon.mts.dto.booking;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

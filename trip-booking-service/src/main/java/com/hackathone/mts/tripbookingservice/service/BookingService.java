@@ -1,6 +1,6 @@
 package com.hackathone.mts.tripbookingservice.service;
 
-import com.hackathon.mts.dto.BookingDTO;
+import com.hackathon.mts.dto.booking.BookingDTO;
 import com.hackathone.mts.tripbookingservice.entities.Booking;
 import com.hackathone.mts.tripbookingservice.entities.Customer;
 import com.hackathone.mts.tripbookingservice.repository.BookingRepository;

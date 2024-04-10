@@ -1,4 +1,4 @@
-package com.hackathon.mts.dto;
+package com.hackathon.mts.dto.booking;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Temporal;
@@ -10,21 +10,24 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class BookingDTO {
-    private int roomNumber;
-    private String hotelName;
+@AllArgsConstructor
+public class FlightDTO {
     private int flightNumber;
-    private String passportData;
+
+    private String departureCity;
+
+    private String arrivalCity;
 
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "Europe/Moscow")
-    private Date checkInTime;
+    private Date departureTime;
 
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "Europe/Moscow")
-    private Date checkOutTime;
+    private Date arrivalTime;
 
-    private int bookingNumber;
+    private int price;
+
+    private String airline;
 }
