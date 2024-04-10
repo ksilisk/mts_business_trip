@@ -1,6 +1,6 @@
 package com.hackathone.mts.tripbookingservice.controller;
 
-import com.hackathone.mts.tripbookingservice.dto.HotelDTO;
+import com.hackathon.mts.dto.HotelDTO;
 import com.hackathone.mts.tripbookingservice.service.HotelService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -28,7 +28,7 @@ public class HotelController {
             @ApiResponse(responseCode = "404", description = "Hotels not found",
                     content = @Content)
     })
-    @GetMapping()
+    @GetMapping
     public List<HotelDTO> getAllHotels() {
         return hotelService.convertToDTOList(hotelService.getAllHotels());
     }

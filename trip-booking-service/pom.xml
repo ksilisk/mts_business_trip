@@ -30,6 +30,11 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.hackathon.mts</groupId>
+            <artifactId>trip-common</artifactId>
+            <version>${business.trip.project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>

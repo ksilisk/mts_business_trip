@@ -27,6 +27,7 @@
         <module>trip-booking-service</module>
         <module>trip-resource-server</module>
         <module>trip-employee-directory</module>
+        <module>trip-common</module>
     </modules>
 
     <dependencyManagement>

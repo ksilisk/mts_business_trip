@@ -1,4 +1,4 @@
-package com.hackathone.mts.tripbookingservice.dto;
+package com.hackathon.mts.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

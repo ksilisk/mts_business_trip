@@ -12,7 +12,7 @@ INSERT INTO Flights (flight_number, departure_city, arrival_city, departure_time
 VALUES (12345, 'MSK', 'SPB', '2024-04-12 08:00:00', '2024-04-12 10:00:00', 10000, 'Aeroflot'),
        (54321, 'MSK', 'SPB', '2024-04-12 12:00:00', '2024-04-12 14:00:00', 15000, 'Aeroflot');
 
-insert into customers(customer_name, customer_surname, customer_otchestvo, passport_data)
+insert into customers(customer_name, customer_surname, customer_patronymic, passport_data)
 VALUES ('Alexandr', 'Popov', 'Alexandrovich', '2015123987'),
        ('Irina', 'Sidorova', 'Vasilievna', '123456789');
 

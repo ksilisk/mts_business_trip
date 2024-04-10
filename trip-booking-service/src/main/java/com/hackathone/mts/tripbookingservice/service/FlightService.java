@@ -1,7 +1,7 @@
 package com.hackathone.mts.tripbookingservice.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hackathone.mts.tripbookingservice.dto.FlightDTO;
+import com.hackathon.mts.dto.FlightDTO;
 import com.hackathone.mts.tripbookingservice.entities.Flight;
 import com.hackathone.mts.tripbookingservice.repository.FlightRepository;
 import lombok.RequiredArgsConstructor;
