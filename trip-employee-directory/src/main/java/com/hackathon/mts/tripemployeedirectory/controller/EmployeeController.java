@@ -1,6 +1,6 @@
 package com.hackathon.mts.tripemployeedirectory.controller;
 
-import com.hackathon.mts.tripemployeedirectory.payload.EmployeeInfo;
+import com.hackathon.mts.payload.EmployeeInfo;
 import com.hackathon.mts.tripemployeedirectory.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

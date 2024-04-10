@@ -1,6 +1,6 @@
 package com.hackathone.mts.tripbookingservice.service;
 
-import com.hackathone.mts.tripbookingservice.dto.BookingDTO;
+import com.hackathon.mts.dto.BookingDTO;
 import com.hackathone.mts.tripbookingservice.entities.Booking;
 import com.hackathone.mts.tripbookingservice.entities.Customer;
 import com.hackathone.mts.tripbookingservice.repository.BookingRepository;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 
 @Service

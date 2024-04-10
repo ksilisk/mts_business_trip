@@ -1,6 +1,5 @@
-package com.hackathon.mts.tripemployeedirectory.payload;
+package com.hackathon.mts.payload;
 
-import com.hackathon.mts.tripemployeedirectory.entity.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,9 +17,4 @@ public class EmployeeInfo {
     private String email;
     private String position;
     private String role;
-
-    public static EmployeeInfo from(Employee employee) {
-        return new EmployeeInfo(employee.getName(), employee.getSurname(), employee.getPatronymic(),
-                employee.getPhone(), employee.getEmail(), employee.getPosition(), employee.getRole().getRole());
-    }
 }

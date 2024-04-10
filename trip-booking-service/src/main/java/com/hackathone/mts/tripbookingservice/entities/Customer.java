@@ -20,7 +20,7 @@ public class Customer {
     @Column(name = "customer_surname")
     private String surname;
 
-    @Column(name = "customer_otchestvo")
+    @Column(name = "customer_patronymic")
     private String otchestvo;
 
     @Column(name = "passport_data")

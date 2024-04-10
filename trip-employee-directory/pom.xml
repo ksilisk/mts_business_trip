@@ -38,6 +38,11 @@
             <artifactId>postgresql</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.hackathon.mts</groupId>
+            <artifactId>trip-common</artifactId>
+            <version>${business.trip.project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
