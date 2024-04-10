@@ -3,7 +3,7 @@ import { useState, useCallback } from "react";
 function useFormValidation() {
   const [values, setValues ] = useState({});
   const [errors, setErrors ] = useState({});
-  const [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(true);
 
   function handleChange(evt){
     const name = evt.target.name
@@ -19,7 +19,7 @@ function useFormValidation() {
       return {...oldErrors, [name]: validationMessage, }
     })
 
-    setIsValid(form.checkValidity())
+    setIsValid(true)
   }
 
   function reset(data = {}) {

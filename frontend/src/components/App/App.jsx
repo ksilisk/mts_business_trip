@@ -1,12 +1,13 @@
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
-import { Routes, Route, useNavigate, Navigate, useLocation } from "react-router-dom";
+import {Navigate, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import Error from '../Error/Error';
 import Login from '../Login/Login';
-import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import CurrentUserContext from '../../context/CurrentUserContext';
+import {authorize, checkToken, getToken, getUserInfo} from "../../utils/MainApi";
+import Logout from "../Logout/Logout";
 import Preloader from '../Preloader/Preloader';
 import ApplicationForm from '../ApplicationForm/ApplicationForm';
 
@@ -17,10 +18,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setError] = useState(false);
   const [isCheckToken, setIsCheckToken] = useState(true)
-  
+
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
 
   const header =
     pathname === "/" ||
@@ -28,55 +28,64 @@ function App() {
     pathname === "/saved-movies" ||
     pathname === "/profile";
 
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      getToken()
+          .then(([ ]) => {
+                  setLoggedIn(true);
+                })
+          .catch((error => console.log(`Ошибка ${error}`)))
+    }
+  })
 
   // useEffect(() => {
   //   if (localStorage.token) {
   //     Promise.all([getInfo(localStorage.token)])
   //     .then(([ ]) => {
   //       setLoggedIn(true);
-  //     }) 
+  //     })
   //     .catch((error => console.log(`Ошибка ${error}`)))
   //   }
   // }, [loggedIn])
 
-  // // Проверка токена при загрузке страницы
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   // если у пользователя есть токен в localStorage, 
-  //   // функция проверит, действующий он или нет
-  //   if (token){
-  //     checkToken(token)
-  //       .then((res) => {
-  //         if (res) {
-  //           setLoggedIn(true);
-  //           setIsCheckToken(false)
-  //         }
-  //       })
-  //       .catch((error => console.log(`Ошибка проверки токена ${error}`)))
-  //   }
-  //   else {
-  //     setLoggedIn(false)
-  //     setIsCheckToken(false)
-  //     localStorage.clear()
-  //   }
-  // }, []);
+  // Проверка токена при загрузке страницы
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    // если у пользователя есть токен в localStorage,
+    // функция проверит, действующий он или нет
+    if (token){
+      checkToken(token)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            setIsCheckToken(false)
+          }
+        })
+        .catch((error => console.log(`Ошибка проверки токена ${error}`)))
+    }
+    else {
+      setLoggedIn(false)
+      setIsCheckToken(false)
+      localStorage.clear()
+    }
+  }, []);
 
   // //авторизация
-  // function handleLogin(email, password) {
-  //   authorize(email, password)
-  //   .then(res => { 
-  //       localStorage.setItem("token", res.token);
-  //       setLoggedIn(true);
-  //       navigate('/movies', {replace: true})
-  //   })
-  //   .catch((error) => {
-  //     setLoggedIn(false);
-  //     console.log(`Ошибка авторизации ${error}`);
-  //     setError(true)
-  //   })
-  //   .finally(() => setIsLoading(false))
-  //   setIsLoading(true)
-  // }
+  function handleLogin(username, password) {
+    authorize(username, password)
+    .then(res => {
+        setLoggedIn(true);
+        getUserInfo(username)
+            .then(() => navigate('/movies', {replace: true}))
+    })
+    .catch((error) => {
+      setLoggedIn(false);
+      console.log(`Ошибка авторизации ${error}`);
+      setError(true)
+    })
+    .finally(() => setIsLoading(false))
+    setIsLoading(true)
+  }
 
   //выход
   function handleLogout() {
@@ -103,10 +112,12 @@ function App() {
         <Route path='/signin' element={
           loggedIn ? <Navigate to='/' replace /> :
           <Login
-            // onLogin={handleLogin}
+            onLogin={handleLogin}
             isLoading={isLoading}
+            isError={isError}
           />
         }/>
+        <Route path='/logout' element={<Logout setLoggedIn={setLoggedIn}/>}/>
         <Route path='*' element={<Error/>}/>
       </Routes>
     </CurrentUserContext.Provider>
