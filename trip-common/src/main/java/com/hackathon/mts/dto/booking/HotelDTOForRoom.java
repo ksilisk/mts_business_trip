@@ -1,16 +1,13 @@
-package com.hackathon.mts.dto;
+package com.hackathon.mts.dto.booking;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class HotelDTO {
-    private List<RoomDTOForHotel> roomsDTO;
+public class HotelDTOForRoom {
     private String name;
     private String city;
 }

@@ -1,7 +1,6 @@
 package com.hackathone.mts.tripbookingservice.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hackathon.mts.dto.BookingDTO;
+import com.hackathon.mts.dto.booking.BookingDTO;
 import com.hackathone.mts.tripbookingservice.service.BookingService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

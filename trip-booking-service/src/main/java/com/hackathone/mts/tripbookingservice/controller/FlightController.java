@@ -1,6 +1,6 @@
 package com.hackathone.mts.tripbookingservice.controller;
 
-import com.hackathon.mts.dto.FlightDTO;
+import com.hackathon.mts.dto.booking.FlightDTO;
 import com.hackathone.mts.tripbookingservice.service.FlightService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
