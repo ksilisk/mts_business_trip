@@ -9,7 +9,7 @@ function Login({ onLogin, isLoading, isError }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onLogin(values.email, values.password);
+    onLogin(values.username, values.password);
   }
 
   return (
@@ -20,18 +20,18 @@ function Login({ onLogin, isLoading, isError }) {
       <h1 className='register__title'>Рады видеть!</h1>
       <form  className='register__form' name='profile-edit' onSubmit={handleSubmit} isValid={isValid} noValidate>
       <label className='register__label'>
-        <span className='register__span'>E-mail</span>
+        <span className='register__span'>Login</span>
         <input 
           className='register__input'
-          id='email'
-          name='email'
-          type='email'
-          placeholder='Введите email'
-          value={values.email ? values.email : ''}
+          id='username'
+          name='username'
+          type='username'
+          placeholder='Введите login'
+          value={values.username ? values.username : ''}
           required
           onChange={handleChange}
         />
-        <span className='register__error'>{errors.email}</span>  
+        <span className='register__error'>{errors.username}</span>
       </label>
       <label className='register__label'>
         <span className='register__span'>Пароль</span>
@@ -49,7 +49,7 @@ function Login({ onLogin, isLoading, isError }) {
         />
         <span className='register__error'>{errors.password}</span>  
       </label>
-      {isError && <div className='profile__succes'>Ошибка</div>}
+      {isError && <div className='profile__error'>Неверный логин или пароль!</div>}
       <button 
         className={`login__submit ${isValid ? '' : 'register__submit_disabled'}`}
         type='submit'
@@ -57,9 +57,6 @@ function Login({ onLogin, isLoading, isError }) {
           {isLoading ? "Вход..." : "Войти"}
       </button>
       </form>
-      <p className='register__subtitle'>Еще не зарегестрированы?
-        <Link to='/signup' className='register__signin'>Регистрация</Link>
-      </p>
     </section>
   );
 }

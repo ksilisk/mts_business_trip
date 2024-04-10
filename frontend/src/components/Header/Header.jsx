@@ -1,6 +1,5 @@
 import './Header.css';
-import { Link,  useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import {Link, Navigate, useLocation} from 'react-router-dom';
 
 function Header({ loggedIn }) {
   const { pathname } = useLocation();
@@ -13,6 +12,9 @@ function Header({ loggedIn }) {
         <Link to={'/signin'}>
           <button className='header__signin'>Войти</button>
         </Link>
+          <Link to={'/logout'}>
+              <button className='header__signin'>Выйти</button>
+          </Link>
       </div>
     </header>
   )
