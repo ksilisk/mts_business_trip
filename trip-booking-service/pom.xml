@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>trip-booking-service</artifactId>
-    <version>${business.trip.project.version</version>
+    <version>${business.trip.project.version}</version>
     <name>trip-booking-service</name>
 
     <properties>

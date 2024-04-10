@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>trip-common</artifactId>
+    <version>${business.trip.project.version}</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -33,4 +34,15 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

@@ -1,6 +1,6 @@
 springdoc:
   paths-to-match:
-   - /api/**
+    - /api/**
   swagger-ui:
     path: /docs/swagger-ui.html
   api-docs:
@@ -27,7 +27,7 @@ spring:
         issuer: "http://localhost:9191"
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/mts_hack_auth
+    url: jdbc:postgresql://postgres:5432/mts_hack_auth
     username: test
     password: test
 server:

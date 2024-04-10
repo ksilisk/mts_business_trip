@@ -1,0 +1,64 @@
+openapi: 3.0.1
+info:
+  title: Trip-Employee-Directory-Service API docs
+  version: 1.0.0
+servers:
+  - url: http://localhost:6161
+    description: Generated server url
+paths:
+  /api/employee/{username}:
+    get:
+      tags:
+        - employee-controller
+      operationId: getEmployee
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EmployeeInfo'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionDetails'
+components:
+  schemas:
+    ExceptionDetails:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        statusCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: string
+    EmployeeInfo:
+      type: object
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+        patronymic:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        position:
+          type: string
+        role:
+          type: string

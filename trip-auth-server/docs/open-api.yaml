@@ -1,0 +1,48 @@
+openapi: 3.0.1
+info:
+  title: Trip-Auth-Server API docs
+  version: 1.0.0
+servers:
+  - url: http://localhost:9191
+    description: Generated server url
+paths:
+  /api/auth:
+    post:
+      tags:
+        - auth-controller
+      operationId: auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthInfo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+components:
+  schemas:
+    AuthInfo:
+      required:
+        - password
+        - username
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    AuthResponse:
+      type: object
+      properties:
+        username:
+          type: string
+        status:
+          type: string
+          enum:
+            - ACCESS_ACCEPTED
+            - ACCESS_DENIED
