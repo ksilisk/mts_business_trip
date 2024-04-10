@@ -13,8 +13,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/mts_hack_directory
-    username: shaliko
-    password: shaliko
+    username: test
+    password: test
 server:
   port: 6161
 
