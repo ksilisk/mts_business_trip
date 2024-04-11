@@ -8,6 +8,7 @@ import com.hackathon.mts.payload.EmployeeInfo;
 import com.hackathon.mts.tripresourceserver.client.EmployeeDirectoryClient;
 import com.hackathon.mts.tripresourceserver.entity.Application;
 import com.hackathon.mts.tripresourceserver.service.ApplicationService;
+import com.hackathon.mts.tripresourceserver.service.BookingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ApplicationController {
     private final ApplicationService applicationService;
+    private final BookingService bookingService;
     private final EmployeeDirectoryClient employeeDirectoryClient;
 
     @PostMapping("/applications")
@@ -90,8 +92,9 @@ public class ApplicationController {
         Application application;
         try {
             application = applicationService.saveApplication(applicationJson);
-            return ResponseEntity.ok("Application for " + application.getUsername() + " successfully added into DB ");
-        } catch (Exception e) {
+            bookingService.doBooking(applicationJson);
+            return ResponseEntity.ok("Application for " + application.getUsername() + " successfully added into DB");
+        }catch (Exception e){
             return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }

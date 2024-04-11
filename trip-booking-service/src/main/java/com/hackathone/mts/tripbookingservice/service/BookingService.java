@@ -5,6 +5,7 @@ import com.hackathone.mts.tripbookingservice.entities.Booking;
 import com.hackathone.mts.tripbookingservice.entities.Customer;
 import com.hackathone.mts.tripbookingservice.repository.BookingRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +23,14 @@ public class BookingService {
     private final RoomService roomService;
     private final FlightService flightService;
     private final Random random;
+    private final ModelMapper modelMapper;
 
     public List<Booking> getCustomersBooking(Customer customer){
         return bookingRepository.findByCustomer(customer).orElseThrow();
+    }
+
+    public BookingDTO getBookingByNumber(int bookingNumber){
+        return modelMapper.map(bookingRepository.findByBookingNumber(bookingNumber), BookingDTO.class);
     }
 
     @Transactional()

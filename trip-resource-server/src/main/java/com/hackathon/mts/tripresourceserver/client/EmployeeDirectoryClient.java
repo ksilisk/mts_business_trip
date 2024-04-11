@@ -9,4 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface EmployeeDirectoryClient {
     @GetMapping("/api/employee/{username}")
     EmployeeInfo getEmployee(@PathVariable("username") String username);
+
+    @GetMapping("/api/employee/getPassportData/{username}")
+    String getEmployeePassportData(@PathVariable("username") String username);
 }

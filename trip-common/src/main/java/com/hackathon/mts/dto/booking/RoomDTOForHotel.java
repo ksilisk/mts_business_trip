@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class RoomDTOForHotel {
     private int roomNumber;
     private int price;
-
+    private boolean available;
 }

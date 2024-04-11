@@ -25,4 +25,11 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employee.getPhone(), employee.getEmail(), employee.getPosition(), employee.getRole().getRole(),
                 employeeRepository.findById(employee.getMasterId()).orElseThrow(() -> new EntityNotFoundException("Entity not found")).getUsername());
     }
+
+    @Override
+    public String getEmployeePassportData(String username) {
+        Employee employee = employeeRepository.findEmployeeByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("Employee not found"));
+        return employee.getPassportSeria() + employee.getPassportNumber();
+    }
 }

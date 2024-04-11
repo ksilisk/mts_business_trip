@@ -10,7 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HotelDTO {
-    private List<RoomDTOForHotel> roomsDTO;
     private String name;
     private String city;
 }
