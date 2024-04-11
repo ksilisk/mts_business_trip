@@ -52,4 +52,7 @@ public class Application {
 
     @Column(name = "master_username")
     private String masterUsername;
+
+    @Column(name = "booking_number")
+    private int bookingNumber;
 }

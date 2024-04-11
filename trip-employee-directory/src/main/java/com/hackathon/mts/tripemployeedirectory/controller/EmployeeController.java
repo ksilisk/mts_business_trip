@@ -18,4 +18,8 @@ public class EmployeeController {
     public EmployeeInfo getEmployee(@PathVariable("username") String username) {
         return employeeService.getEmployee(username);
     }
+    @GetMapping("/getPassportData/{username}")
+    public String getEmployeePassportData(@PathVariable("username") String username) {
+        return employeeService.getEmployeePassportData(username);
+    }
 }

@@ -3,6 +3,7 @@ package com.hackathon.mts.tripresourceserver.client;
 import com.hackathon.mts.dto.booking.BookingDTO;
 import com.hackathon.mts.dto.booking.FlightDTO;
 import com.hackathon.mts.dto.booking.HotelDTO;
+import com.hackathon.mts.dto.booking.RoomDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,4 +22,7 @@ public interface BookingServiceClient {
 
     @GetMapping("/api/hotels")
     List<HotelDTO> getAllHotels();
+
+    @GetMapping("/api/rooms")
+    List<RoomDTO> getAvailableRooms();
 }

@@ -32,13 +32,10 @@ public class HotelService {
     }
 
     public HotelDTO toDTO(Hotel hotel) {
-        List<RoomDTOForHotel> roomsDTO = hotel.getRooms().stream()
-                .map(this::toDTO)
-                .collect(Collectors.toList());
-        return new HotelDTO(roomsDTO, hotel.getName(), hotel.getCity());
+        return new HotelDTO(hotel.getName(), hotel.getCity());
     }
 
     public RoomDTOForHotel toDTO(Room room) {
-        return new RoomDTOForHotel(room.getRoomNumber(), room.getPrice());
+        return new RoomDTOForHotel(room.getRoomNumber(), room.getPrice(), room.isAvailable());
     }
 }

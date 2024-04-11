@@ -13,9 +13,8 @@ public class Room {
     @Column(name = "id")
     private int id;
 
-    @ManyToOne
     @JoinColumn(name = "hotel_id")
-    private Hotel hotel;
+    private int hotelId;
 
     @Column(name = "room_number")
     private int roomNumber;
@@ -25,6 +24,9 @@ public class Room {
 
     @OneToOne(mappedBy = "room", cascade = CascadeType.ALL)
     private Booking booking;
+
+    @Column(name = "available")
+    private boolean available;
 
     public Room() {}
 }

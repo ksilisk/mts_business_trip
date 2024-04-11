@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface AdvanceReportRepository extends JpaRepository<AdvanceReport, Integer> {
-    Optional<AdvanceReport> getAdvanceReportByApplicationId(int applicationId);
-    Optional<AdvanceReport> getAdvanceReportById(int id);
+    Optional<AdvanceReport> getAdvanceReportByApplicationId(long applicationId);
+    Optional<AdvanceReport> getAdvanceReportById(long id);
 }

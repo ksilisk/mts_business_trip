@@ -15,11 +15,19 @@ public class AdvanceReportService {
     private final AdvanceReportRepository advanceReportRepository;
     private final ModelMapper modelMapper;
 
-    public AdvanceReportDTO getAdvanceReportByApplicationId(int applicationId){
+    public AdvanceReportDTO getAdvanceReportByApplicationId(long applicationId){
         return advanceReportRepository.getAdvanceReportByApplicationId(applicationId).map(this::toDTO).orElseThrow();
     }
 
     private AdvanceReportDTO toDTO(AdvanceReport advanceReport){
         return modelMapper.map(advanceReport, AdvanceReportDTO.class);
+    }
+
+    private AdvanceReport toAdvanceReport(AdvanceReportDTO advanceReportDTO){
+        return modelMapper.map(advanceReportDTO, AdvanceReport.class);
+    }
+
+    public void addAdvanceReport(AdvanceReportDTO advanceReportDTO){
+        advanceReportRepository.save(toAdvanceReport(advanceReportDTO));
     }
 }

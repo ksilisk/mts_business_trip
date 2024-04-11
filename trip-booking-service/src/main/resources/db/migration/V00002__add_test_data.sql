@@ -2,10 +2,10 @@ INSERT INTO Hotels (name, city)
 VALUES ('Cosmos', 'SPB');
 
 
-INSERT INTO Rooms (hotel_id, room_number, price)
-VALUES ((SELECT id FROM Hotels WHERE name = 'Cosmos'), 101, 1500),
-       ((SELECT id FROM Hotels WHERE name = 'Cosmos'), 102, 2000),
-       ((SELECT id FROM Hotels WHERE name = 'Cosmos'), 103, 2500);
+INSERT INTO Rooms (hotel_id, room_number, price, available)
+VALUES ((SELECT id FROM Hotels WHERE name = 'Cosmos'), 101, 1500, true),
+       ((SELECT id FROM Hotels WHERE name = 'Cosmos'), 102, 2000, true),
+       ((SELECT id FROM Hotels WHERE name = 'Cosmos'), 103, 2500, true);
 
 
 INSERT INTO Flights (flight_number, departure_city, arrival_city, departure_time, arrival_time, price, airline)

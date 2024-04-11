@@ -4,6 +4,7 @@ package com.hackathon.mts.tripresourceserver.controllers;
 import com.hackathon.mts.dto.resource.ApplicationDTO;
 import com.hackathon.mts.tripresourceserver.entity.Application;
 import com.hackathon.mts.tripresourceserver.service.ApplicationService;
+import com.hackathon.mts.tripresourceserver.service.BookingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ApplicationController {
     private final ApplicationService applicationService;
+    private final BookingService bookingService;
 
     @PostMapping("/applications")
     public List<ApplicationDTO> getApplicationsByStatusAndUsername(
@@ -100,7 +102,8 @@ public class ApplicationController {
         Application application;
         try{
             application = applicationService.saveApplication(applicationJson);
-            return ResponseEntity.ok("Application for " + application.getUsername() + " successfully added into DB ");
+            bookingService.doBooking(applicationJson);
+            return ResponseEntity.ok("Application for " + application.getUsername() + " successfully added into DB");
         }catch (Exception e){
             return ResponseEntity.internalServerError().body(e.getMessage());
         }

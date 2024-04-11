@@ -14,9 +14,6 @@ public class Hotel {
     @Column(name = "id")
     private int id;
 
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
-    private List<Room> rooms;
-
     @Column(name = "name")
     private String name;
 

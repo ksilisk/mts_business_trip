@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS rooms
     id          SERIAL PRIMARY KEY,
     hotel_id    INTEGER REFERENCES Hotels (id),
     room_number int,
-    price       int
-
+    price       int,
+    available   boolean
 );
 
 CREATE TABLE IF NOT EXISTS flights
