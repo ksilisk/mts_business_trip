@@ -45,6 +45,17 @@ public class BookingController {
         }
         return ResponseEntity.ok(bookingDTO);
     }
+
+    @Operation(summary = "Get a booking by booking number")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved the booking",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = BookingDTO.class))}),
+            @ApiResponse(responseCode = "404", description = "Booking not found",
+                    content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error processing request",
+                    content = @Content)
+    })
     @GetMapping("/{booking_number}")
     public ResponseEntity<?> getBooking(@PathVariable(name = "booking_number") int bookingNumber){
         try {

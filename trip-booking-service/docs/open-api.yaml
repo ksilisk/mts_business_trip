@@ -1,140 +1,282 @@
-openapi: 3.0.1
-info:
-  title: Trip-Booking-Service API docs
-  version: 1.0.0
-servers:
-  - url: http://localhost:7777
-    description: Generated server url
-paths:
-  /api/booking:
-    post:
-      tags:
-        - booking-controller
-      summary: Create a booking
-      operationId: createBooking
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BookingDTO'
-        required: true
-      responses:
-        '200':
-          description: Successfully created the booking
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BookingDTO'
-        '400':
-          description: Invalid input parameters supplied
-        '500':
-          description: Error processing booking request
-  /api/hotels:
-    get:
-      tags:
-        - hotel-controller
-      summary: Get all hotels
-      operationId: getAllHotels
-      responses:
-        '200':
-          description: Successfully retrieved the list of hotels
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HotelDTO'
-        '404':
-          description: Hotels not found
-  /api/flights:
-    get:
-      tags:
-        - flight-controller
-      summary: Get all flights for a specific day and month
-      operationId: getAllFlights
-      parameters:
-        - name: day
-          in: query
-          description: Day of the month (1-31)
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: month
-          in: query
-          description: Month of the year (1-12)
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        '200':
-          description: Successfully retrieved the list of flights
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FlightDTO'
-        '400':
-          description: Invalid input parameters supplied
-        '404':
-          description: Flights not found
-components:
-  schemas:
-    BookingDTO:
-      type: object
-      properties:
-        roomNumber:
-          type: integer
-          format: int32
-        hotelName:
-          type: string
-        flightNumber:
-          type: integer
-          format: int32
-        passportData:
-          type: string
-        checkInTime:
-          type: string
-          format: date-time
-        checkOutTime:
-          type: string
-          format: date-time
-    HotelDTO:
-      type: object
-      properties:
-        roomsDTO:
-          type: array
-          items:
-            $ref: '#/components/schemas/RoomDTOForHotel'
-        name:
-          type: string
-        city:
-          type: string
-    RoomDTOForHotel:
-      type: object
-      properties:
-        roomNumber:
-          type: integer
-          format: int32
-        price:
-          type: integer
-          format: int32
-    FlightDTO:
-      type: object
-      properties:
-        flightNumber:
-          type: integer
-          format: int32
-        departureCity:
-          type: string
-        arrivalCity:
-          type: string
-        departureTime:
-          type: string
-          format: date-time
-        arrivalTime:
-          type: string
-          format: date-time
-        price:
-          type: integer
-          format: int32
-        airline:
-          type: string
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Trip-Booking-Service API docs",
+    "version": 1.0.0
+  },
+  "servers": [
+    {
+      "url": "http://localhost:7171",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/booking": {
+      "post": {
+        "tags": [
+          "booking-controller"
+        ],
+        "summary": "Create a booking",
+        "operationId": "createBooking",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookingDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created the booking",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error processing booking request"
+          },
+          "400": {
+            "description": "Invalid input parameters supplied"
+          }
+        }
+      }
+    },
+    "/api/rooms": {
+      "get": {
+        "tags": [
+          "room-controller"
+        ],
+        "summary": "Get all free rooms",
+        "operationId": "getFreeRooms",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of free rooms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoomDTO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error processing request"
+          }
+        }
+      }
+    },
+    "/api/hotels": {
+      "get": {
+        "tags": [
+          "hotel-controller"
+        ],
+        "summary": "Get all hotels",
+        "operationId": "getAllHotels",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of hotels",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HotelDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Hotels not found"
+          }
+        }
+      }
+    },
+    "/api/flights": {
+      "get": {
+        "tags": [
+          "flight-controller"
+        ],
+        "summary": "Get all flights for a specific day and month",
+        "operationId": "getAllFlights",
+        "parameters": [
+          {
+            "name": "day",
+            "in": "query",
+            "description": "Day of the month (1-31)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "description": "Month of the year (1-12)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of flights",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FlightDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Flights not found"
+          },
+          "400": {
+            "description": "Invalid input parameters supplied"
+          }
+        }
+      }
+    },
+    "/api/booking/{booking_number}": {
+      "get": {
+        "tags": [
+          "booking-controller"
+        ],
+        "summary": "Get a booking by booking number",
+        "operationId": "getBooking",
+        "parameters": [
+          {
+            "name": "booking_number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the booking",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Booking not found"
+          },
+          "500": {
+            "description": "Error processing request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BookingDTO": {
+        "type": "object",
+        "properties": {
+          "roomNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hotelName": {
+            "type": "string"
+          },
+          "flightNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "passportData": {
+            "type": "string"
+          },
+          "checkInTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "checkOutTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "bookingNumber": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "RoomDTO": {
+        "type": "object",
+        "properties": {
+          "roomNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hotelName": {
+            "type": "string"
+          },
+          "available": {
+            "type": "boolean"
+          }
+        }
+      },
+      "HotelDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          }
+        }
+      },
+      "FlightDTO": {
+        "type": "object",
+        "properties": {
+          "flightNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "departureCity": {
+            "type": "string"
+          },
+          "arrivalCity": {
+            "type": "string"
+          },
+          "departureTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "arrivalTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "airline": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
