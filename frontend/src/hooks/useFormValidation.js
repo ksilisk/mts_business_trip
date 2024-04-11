@@ -18,7 +18,6 @@ function useFormValidation() {
     setErrors((oldErrors) => {
       return {...oldErrors, [name]: validationMessage, }
     })
-
     setIsValid(true)
   }
 

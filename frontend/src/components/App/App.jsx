@@ -6,7 +6,7 @@ import Error from '../Error/Error';
 import Login from '../Login/Login';
 import {useEffect, useState} from "react";
 import CurrentUserContext from '../../context/CurrentUserContext';
-import {authorize, checkToken, getToken, getUserInfo} from "../../utils/MainApi";
+import {authorize, checkToken, getToken, getLoginUserInfo} from "../../utils/MainApi";
 import Logout from "../Logout/Logout";
 import ApplicationForm from '../ApplicationForm/ApplicationForm';
 import ApplicationList from "../ApplicationList/ApplicationList";
@@ -14,6 +14,10 @@ import ApplicationCard from "../ApplicationCard/ApplicationCard";
 import Profile from "../Profile/Profile";
 import Report from "../Report/Report";
 import ReportCard from "../ReportCard/ReportCard";
+import LeadApprove from "../LeadApprove/LeadApprove";
+import LeadApproveCard from "../LeadApproveCard/LeadApproveCard";
+import AccountantApprove from "../AccountantApprove/AccountantApprove";
+import AccountantApproveCard from "../AccountantApproveCard/AccountantApproveCard";
 
 function App() {
 
@@ -85,7 +89,7 @@ function App() {
         authorize(username, password)
             .then(res => {
                 setLoggedIn(true);
-                getUserInfo(username)
+                getLoginUserInfo(username)
                     .then(() => navigate('/profile', {replace: true}))
             })
             .catch((error) => {
@@ -117,6 +121,10 @@ function App() {
                     <Route path='/' element={
                         <Main/>
                     }/>
+                    <Route path='/accountant-approve/*' element={<AccountantApproveCard/>}/>
+                    <Route path='/accountant-approve' element={<AccountantApprove/>}/>
+                    <Route path='/lead-approve/*' element={<LeadApproveCard/>}/>
+                    <Route path='/lead-approve' element={<LeadApprove/>}/>
                     <Route path='/report/*' element={<ReportCard/>}/>
                     <Route path='/report' element={<Report/>}/>
                     <Route path='/profile' element={<Profile/>}/>
