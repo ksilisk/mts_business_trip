@@ -3,12 +3,16 @@ package com.hackathon.mts.dto.resource;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ApplicationDTO {
+    private long id;
     private String tripGoal;
 
     private String username;
@@ -21,13 +25,13 @@ public class ApplicationDTO {
 
     private String status;
 
-    private Date startDate;
+    private LocalDate startDate;
 
-    private Date endDate;
+    private LocalDate endDate;
 
     private String prepaymentType;
 
     private String cardNumber;
 
-    private int masterId;
+    private String masterUsername;
 }

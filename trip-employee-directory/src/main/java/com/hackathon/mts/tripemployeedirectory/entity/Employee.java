@@ -24,6 +24,5 @@ public class Employee {
     private String position;
     @OneToOne
     private Role role;
-    @ManyToOne
-    private Employee master;
+    private long masterId;
 }

@@ -17,4 +17,5 @@ public class EmployeeInfo {
     private String email;
     private String position;
     private String role;
+    private String masterUsername;
 }

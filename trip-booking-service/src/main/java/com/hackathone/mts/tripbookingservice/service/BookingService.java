@@ -32,13 +32,13 @@ public class BookingService {
         return bookingRepository.save(convertToBooking(bookingDTO));
     }
 
-    public Booking convertToBooking(BookingDTO bookingDTO){
+    private Booking convertToBooking(BookingDTO bookingDTO){
         Booking booking = new Booking();
         enrichBooking(booking, bookingDTO);
         return booking;
     }
 
-    public void enrichBooking(Booking booking, BookingDTO bookingDTO){
+    private void enrichBooking(Booking booking, BookingDTO bookingDTO){
         booking.setCustomer(customerService.getCustomer(bookingDTO.getPassportData()));
         booking.setRoom(roomService.getRoom(bookingDTO.getRoomNumber()));
         booking.setFlight(flightService.getFlight(bookingDTO.getFlightNumber()));

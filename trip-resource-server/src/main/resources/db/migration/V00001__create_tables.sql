@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS applications
     end_date DATE,
     prepayment_type VARCHAR,
     card_number VARCHAR,
-    master_id INT
+    master_username VARCHAR
 );
 
 CREATE TABLE IF NOT EXISTS advance_reports

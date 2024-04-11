@@ -4,4 +4,4 @@ VALUES ('test', 'Andrei', 'Andreev', 'Andreevich', '880055533535', 'test@test.ru
 
 INSERT INTO employees(username, name, surname, patronymic, phone, email, passport_seria,
                                                 passport_number, position, master_id, role_id)
-VALUES ('test1', 'Aleks', 'Alekseev', 'Andreevich', '880055533535', 'test@test.ru', '1233', '123455', 'Developer', 1, 1);
+VALUES ('test2', 'Aleks', 'Alekseev', 'Andreevich', '880055533535', 'test@test.ru', '1233', '123455', 'Developer', 1, 1);
