@@ -22,6 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeInfo createInfo(Employee employee) {
         return new EmployeeInfo(employee.getName(), employee.getSurname(), employee.getPatronymic(),
-                employee.getPhone(), employee.getEmail(), employee.getPosition(), employee.getRole().getRole());
+                employee.getPhone(), employee.getEmail(), employee.getPosition(), employee.getRole().getRole(),
+                employeeRepository.findById(employee.getMasterId()).orElseThrow(() -> new EntityNotFoundException("Entity not found")).getUsername());
     }
 }

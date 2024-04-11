@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -35,10 +36,10 @@ public class Application {
     private String status;
 
     @Column(name = "start_date")
-    private Date startDate;
+    private LocalDate startDate;
 
     @Column(name = "end_date")
-    private Date endDate;
+    private LocalDate endDate;
 
     @Column(name = "prepayment_type")
     private String prepaymentType;
@@ -46,6 +47,6 @@ public class Application {
     @Column(name = "card_number")
     private String cardNumber;
 
-    @Column(name = "master_id")
-    private int masterId;
+    @Column(name = "master_username")
+    private String masterUsername;
 }
