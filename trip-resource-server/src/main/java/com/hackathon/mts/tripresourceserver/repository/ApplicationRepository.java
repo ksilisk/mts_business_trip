@@ -10,6 +10,7 @@ import java.util.Optional;
 @Repository
 public interface ApplicationRepository extends JpaRepository<Application, Integer> {
     Optional<Application> getApplicationById(long id);
+    List<Application> findAllByMasterUsernameAndStatus(String masterUsername, String status);
     Optional<List<Application>> getApplicationByUsername(String username);
     Optional<List<Application>> getApplicationByMasterUsername(String masterUsername);
     Optional<List<Application>> getApplicationByStatus(String status);
