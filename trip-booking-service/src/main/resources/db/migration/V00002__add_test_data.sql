@@ -14,6 +14,6 @@ VALUES (12345, 'MSK', 'SPB', '2024-04-12 08:00:00', '2024-04-12 10:00:00', 10000
 
 insert into customers(customer_name, customer_surname, customer_patronymic, passport_data)
 VALUES ('Alexandr', 'Popov', 'Alexandrovich', '2015123987'),
-       ('Irina', 'Sidorova', 'Vasilievna', '123456789');
+       ('Irina', 'Sidorova', 'Vasilievna', '1233123455');
 
 
