@@ -1,12 +1,14 @@
 import './ReportCard.css';
-import {Link, useLocation, useNavigate} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import {useEffect, useState} from "react";
-import {getAllWaitReportApp, getApplicationById} from "../../utils/MainApi";
+import {getApplicationById} from "../../utils/MainApi";
+import useFormValidation from "../../hooks/useFormValidation";
 
 
 function ReportCard() {
     const {pathname} = useLocation();
     const [app, setApp] = useState({});
+    const [isError, setError] = useState(false)
 
     useEffect(() => {
         getApplicationById(pathname.split("/")[2], setApp)
@@ -15,12 +17,11 @@ function ReportCard() {
 
     const [reportData, setReportData] = useState({
         description: '',
-        expenses: [],
         pdfFile: null
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setReportData(prevState => ({
             ...prevState,
             [name]: value
@@ -33,6 +34,10 @@ function ReportCard() {
             pdfFile: e.target.files[0]
         }));
     };
+
+    const isValid = () => {
+        return reportData.pdfFile != null && reportData.description.length !== 0
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -49,20 +54,36 @@ function ReportCard() {
     return (
         <section className='application register'>
             <h1 className='register__title'>Список заявок ожидающих финансовый отчет</h1>
-            <div>
-                <h2>Financial Report</h2>
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Description:
-                        <textarea name="description" value={reportData.description} onChange={handleChange} />
-                    </label>
-                    <label>
-                        PDF File:
-                        <input type="file" accept=".pdf" onChange={handlePdfChange} />
-                    </label>
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
+            <form className='register__form' name='profile-edit' onSubmit={handleSubmit} noValidate>
+                <label className='register__label'>
+                    <span className='register__span'>Описание отчета</span>
+                    <input
+                        className='register__input'
+                        name='description'
+                        type='text'
+                        placeholder='Напишите отчет'
+                        value={reportData.description ? reportData.description : ''}
+                        required
+                        onChange={handleChange}
+                    />
+                    <span className='register__error'>{}</span>
+                </label>
+                <label className='register__label'>
+                    <span className='register__span'>PDF-документ, подтверждающий расходы</span>
+                    <input
+                        className='register__input'
+                        type='file'
+                        accept='.pdf'
+                        required
+                        onChange={handlePdfChange}
+                    />
+                    <span className='register__error'>{}</span>
+                </label>
+                {reportData.pdfFile == null && reportData.description.length === 0 ? <div className='profile__error'>Необходимо заполнить все поля</div>:''}
+                <button type="submit"
+                        className={`login__submit`}
+                        disabled={reportData.pdfFile == null && reportData.description.length === 0}>Отправить отчет</button>
+            </form>
         </section>
     )
 }
