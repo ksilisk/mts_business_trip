@@ -16,7 +16,7 @@ import java.util.List;
 public class ApplicationController {
     private final ApplicationService applicationService;
 
-    @GetMapping("/applications")
+    @PostMapping("/applications")
     public List<ApplicationDTO> getApplicationsByStatusAndUsername(
             @RequestParam(name = "status") String status, @RequestParam(name = "username") String username
     ){
@@ -55,7 +55,7 @@ public class ApplicationController {
         return "Status = " + application.getStatus();
     }
 
-    @GetMapping("/applications/{id}")
+    @GetMapping("/application/{id}")
     public ResponseEntity<?> getApplicationById(@PathVariable(name = "id") long id){
         try{
             ApplicationDTO applicationDTO = applicationService.getApplicationById(id);

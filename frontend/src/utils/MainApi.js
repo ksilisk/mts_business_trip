@@ -1,6 +1,50 @@
 export const BASE_URL = 'http://localhost:9191';
 export const MAIN_BACKEND = 'http://localhost:8181'
 
+export const getAllWaitReportApp = (username, setApps) => {
+  var details = {
+    'status': 'report-waiting',
+    'username': localStorage.getItem("username")
+  };
+  var formBody = [];
+  for (var property in details) {
+    var encodedKey = encodeURIComponent(property);
+    var encodedValue = encodeURIComponent(details[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+  }
+  formBody = formBody.join("&");
+  return fetch(`${MAIN_BACKEND}/api/applications`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: formBody
+  })
+      .then(checkResponse)
+      .then((data) => setApps(data))
+}
+export const getAllApplicationsByUser = (username, setRequests) => {
+  return fetch(`${MAIN_BACKEND}/api/applications/` + username, {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+      .then(checkResponse)
+      .then((data) => setRequests(data))
+}
+
+export const getApplicationById = (id, setApp) => {
+  return fetch(`${MAIN_BACKEND}/api/application/` + id,  {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  }).then(checkResponse)
+      .then((data) => setApp(data))
+}
+
+
 function checkResponse(res) {
   if (res.ok) {
     return res.json();
@@ -66,6 +110,16 @@ export const getToken = () => {
       })
  }
 
+export const sendAppForm = (body) => {
+  return fetch(`${MAIN_BACKEND}/api/application`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: body
+  }).then(checkResponse)
+}
+
 export const authorize  = (username, password) => {
   return fetch(`${BASE_URL}/api/auth`, {
     method: 'POST',
@@ -89,7 +143,7 @@ export const authorize  = (username, password) => {
 }
 
 export const checkToken = (token) => {
-  return fetch(`${BASE_URL}/users/me`, {
+  return fetch(`${BASE_URL}/api/auth`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -114,3 +168,19 @@ export const setUserInfo = (name, email, token) => {
   .then(checkResponse);
 }
 
+
+export const getStatus = (status) => {
+  if (status === 'not approved') {
+    return 'На согласовании у руководителя'
+  } else if (status === 'approved by master') {
+    return 'Согласовано руководителем'
+  } else if (status === 'approved by accountant') {
+    return 'На согласовании бухгалетрии'
+  } else if (status === 'report-waiting') {
+    return 'Ожидает отчета'
+  } else if (status === 'archive') {
+    return 'Завершено'
+  } else {
+    return 'Ошибка. Невалидной состояние'
+  }
+}

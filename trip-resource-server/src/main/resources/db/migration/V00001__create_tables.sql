@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS applications
 (
     id SERIAL PRIMARY KEY,
     trip_goal TEXT,
-    username TEXT UNIQUE,
+    username TEXT,
     income_city VARCHAR,
     income_country VARCHAR,
     trip_argument VARCHAR,

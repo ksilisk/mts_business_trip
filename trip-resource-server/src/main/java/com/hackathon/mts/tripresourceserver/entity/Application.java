@@ -15,7 +15,7 @@ public class Application {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "trip_goal")
     private String tripGoal;
@@ -43,6 +43,9 @@ public class Application {
 
     @Column(name = "prepayment_type")
     private String prepaymentType;
+
+    @Column(name = "prepayment_amount")
+    private Integer prepaymentAmount;
 
     @Column(name = "card_number")
     private String cardNumber;

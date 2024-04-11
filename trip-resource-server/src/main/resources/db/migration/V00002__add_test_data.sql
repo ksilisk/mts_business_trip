@@ -1,1 +1,2 @@
--- file for test data
+ALTER TABLE applications
+    ADD prepayment_amount INTEGER;
