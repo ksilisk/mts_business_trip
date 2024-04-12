@@ -107,5 +107,16 @@ Mock-сервис, который позволяет выбрать рейс, о
 #### Запускаем Frontend
     $ npm start
 Сервис будет доступен по адресу `http://localhost:3000`
+
+По умолчанию в систему добавлены 3 тестовых пользователя:
+1. Руководитель
+   * Login: lead
+   * Password: test
+3. Сотрудник
+   * Login: test2
+   * Password: test
+5. Бухгалтер
+   * Login: acco
+   * Password: test
 ## <a name="test_cases"></a> Тест-кейсы
 [Test_plan.pdf](tech_documentation%2FTest_plan.pdf)
