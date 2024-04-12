@@ -8,7 +8,6 @@ function Report() {
     const [apps, setApps] = useState([])
 
     useEffect(() => {
-        // Ваша логика для получения списка заявок с бэкэнда
         getAllWaitReportApp(localStorage.getItem("username"), setApps)
             .catch((error) => console.log("error: " + error))
     }, []);

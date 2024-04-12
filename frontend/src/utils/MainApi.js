@@ -95,7 +95,6 @@ export const getApplicationById = (id, setApp) => {
 }
 
 export const getAccountantApplicationById = (id, setApp) => {
-    console.log("AAAAAAAAAA:" + id)
     return fetch(`${MAIN_BACKEND}/api/accountant/` + id, {
         method: "GET",
         headers: {

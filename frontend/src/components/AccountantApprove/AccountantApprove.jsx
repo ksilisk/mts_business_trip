@@ -8,7 +8,6 @@ function AccountantApprove() {
     const [approvedRequests, setApprovedRequests] = useState([]);
 
     useEffect(() => {
-        console.log("lf ,kzn z yt ghjuwfbdajkvhzfjhk")
         getAllApplicationForAccountantApprove(setRequests)
             .catch((error) => console.log("error: " + error))
 

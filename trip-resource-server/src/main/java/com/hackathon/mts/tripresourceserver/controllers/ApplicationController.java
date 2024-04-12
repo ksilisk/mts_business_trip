@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ApplicationController {
     private final ApplicationService applicationService;
-    private final BookingService bookingService;
     private final EmployeeDirectoryClient employeeDirectoryClient;
 
     @Operation(summary = "Get applications by status and username")
@@ -36,7 +35,7 @@ public class ApplicationController {
             @ApiResponse(responseCode = "500", description = "Error processing request",
                     content = @Content)
     })
-    @GetMapping("/applications")
+    @PostMapping("/applications")
     public List<ApplicationDTO> getApplicationsByStatusAndUsername(
             @RequestParam(name = "status") String status, @RequestParam(name = "username") String username) {
         return applicationService.getApplicationsByStatusAnsUsername(status, username);
@@ -174,7 +173,7 @@ public class ApplicationController {
     @GetMapping("/approve/accountant/{id-application}")
     public String changeApplicationStatusOnApprovedByAccountant(@PathVariable(name = "id-application") long id) {
         Application application = applicationService.getApplicationEntity(id);
-        application.setStatus("approved by accountant");
+        application.setStatus("report-waiting");
         applicationService.updateApplication(application);
         return "Status = " + application.getStatus();
     }
