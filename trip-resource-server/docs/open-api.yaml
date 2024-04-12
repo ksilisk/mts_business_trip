@@ -1,8 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Trip-Resource-Server API Docs",
-    "version": 1.0.0
+    "title": "Trip-Resource-Server API Docs"
   },
   "servers": [
     {
@@ -29,11 +28,11 @@
           "required": true
         },
         "responses": {
-          "500": {
-            "description": "Error processing request"
-          },
           "400": {
             "description": "Bad request"
+          },
+          "500": {
+            "description": "Error processing request"
           },
           "200": {
             "description": "Report successfully added"
@@ -101,11 +100,82 @@
           "required": true
         },
         "responses": {
+          "200": {
+            "description": "Application successfully added"
+          },
+          "500": {
+            "description": "Error processing request"
+          }
+        }
+      }
+    },
+    "/api/application/{id}": {
+      "get": {
+        "tags": [
+          "application-controller"
+        ],
+        "summary": "Get application by ID",
+        "operationId": "getApplicationById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
           "500": {
             "description": "Error processing request"
           },
           "200": {
-            "description": "Application successfully added"
+            "description": "Successfully retrieved application",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "application-controller"
+        ],
+        "summary": "Update application",
+        "operationId": "updateApplication",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "500": {
+            "description": "Error processing request"
+          },
+          "200": {
+            "description": "Application successfully updated"
           }
         }
       }
@@ -129,12 +199,6 @@
           }
         ],
         "responses": {
-          "500": {
-            "description": "Error processing request"
-          },
-          "404": {
-            "description": "Advance report not found"
-          },
           "200": {
             "description": "Successfully retrieved advance report",
             "content": {
@@ -144,6 +208,12 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Error processing request"
+          },
+          "404": {
+            "description": "Advance report not found"
           }
         }
       }
@@ -417,41 +487,6 @@
           },
           "200": {
             "description": "Successfully retrieved applications",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApplicationDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/application/{id}": {
-      "get": {
-        "tags": [
-          "application-controller"
-        ],
-        "summary": "Get application by ID",
-        "operationId": "getApplicationById",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "500": {
-            "description": "Error processing request"
-          },
-          "200": {
-            "description": "Successfully retrieved application",
             "content": {
               "application/json": {
                 "schema": {

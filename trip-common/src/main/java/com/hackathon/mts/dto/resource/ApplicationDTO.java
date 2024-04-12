@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ApplicationDTO {
     private long id;
+
     private String tripGoal;
 
     private String username;

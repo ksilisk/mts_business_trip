@@ -26,7 +26,7 @@ public class BookingService {
         return new BookingDTO(roomNumber, hotelName, flightNumber, passportData, startDate, endDate, 0);
     }
 
-    public void doBooking(ApplicationDTO applicationDTO){
-        bookingServiceClient.createBooking(createBookingDTO(applicationDTO));
+    public BookingDTO doBooking(ApplicationDTO applicationDTO){
+        return bookingServiceClient.createBooking(createBookingDTO(applicationDTO));
     }
 }
