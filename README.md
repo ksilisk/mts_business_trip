@@ -112,10 +112,10 @@ Mock-сервис, который позволяет выбрать рейс, о
 1. Руководитель
    * Login: lead
    * Password: test
-3. Сотрудник
+2. Сотрудник
    * Login: test2
    * Password: test
-5. Бухгалтер
+3. Бухгалтер
    * Login: acco
    * Password: test
 ## <a name="test_cases"></a> Тест-кейсы
