@@ -157,7 +157,6 @@ public class ApplicationController {
         Application application;
         try {
             application = applicationService.saveApplication(applicationJson);
-            bookingService.doBooking(applicationJson);
             return ResponseEntity.ok("Application for " + application.getUsername() + " successfully added into DB");
         }catch (Exception e){
             return ResponseEntity.internalServerError().body(e.getMessage());
@@ -238,5 +237,22 @@ public class ApplicationController {
         ApplicationDTO application = applicationService.getApplicationById(appId);
         EmployeeInfo employeeInfo = employeeDirectoryClient.getEmployee(application.getUsername());
         return new LeadApproveDTO(application, employeeInfo);
+    }
+
+    @Operation(summary = "Update application")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Application successfully updated",
+                    content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error processing request",
+                    content = @Content)
+    })
+    @PatchMapping("/application/{id}")
+    public ResponseEntity<?> updateApplication(@RequestBody ApplicationDTO applicationDTO, @PathVariable(name = "id") long id){
+        try {
+            applicationService.updateApplication(applicationDTO, id);
+            return ResponseEntity.ok("Application has updated");
+        } catch (Exception e){
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
     }
 }

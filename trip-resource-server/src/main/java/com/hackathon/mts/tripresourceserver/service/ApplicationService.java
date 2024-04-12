@@ -22,6 +22,7 @@ public class ApplicationService {
     private final ApplicationRepository applicationRepository;
     private final ModelMapper modelMapper;
     private final EmployeeDirectoryClient employeeDirectoryClient;
+    private final BookingService bookingService;
 
     @Transactional(readOnly = true)
     public List<ApplicationDTO> getAllApplicationsForUser(String username) {
@@ -51,7 +52,10 @@ public class ApplicationService {
     }
 
     public Application saveApplication(ApplicationDTO applicationDTO) {
-        return applicationRepository.save(toApplication(applicationDTO));
+        int bookingNumber = bookingService.doBooking(applicationDTO).getBookingNumber();
+        Application application = (toApplication(applicationDTO));
+        application.setBookingNumber(bookingNumber);
+        return applicationRepository.save(application);
     }
 
     @Transactional(readOnly = true)
@@ -85,5 +89,17 @@ public class ApplicationService {
         List<Application> applicationList = applicationRepository.getApplicationsByStatusAndUsername(status, username)
                 .orElseThrow(() -> new EntityNotFoundException("applications bot found"));
         return applicationList.stream().map(this::toDTO).collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void updateApplication(ApplicationDTO applicationDTO, long id){
+        Application application = applicationRepository.getApplicationById(id).orElseThrow();
+        String masterUsername = application.getMasterUsername();
+        int bookingNumber = application.getBookingNumber();
+        modelMapper.map(applicationDTO, application);
+        application.setId((int) id);
+        application.setMasterUsername(masterUsername);
+        application.setBookingNumber(bookingNumber);
+        applicationRepository.save(application);
     }
 }
