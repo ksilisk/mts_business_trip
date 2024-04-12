@@ -110,13 +110,13 @@ Mock-сервис, который позволяет выбрать рейс, о
 
 По умолчанию в систему добавлены 3 тестовых пользователя:
 1. Руководитель
-   * Login: lead
-   * Password: test
+   * Login: *lead*
+   * Password: *test*
 2. Сотрудник
-   * Login: test2
-   * Password: test
+   * Login: *test2*
+   * Password: *test*
 3. Бухгалтер
-   * Login: acco
-   * Password: test
+   * Login: *acco*
+   * Password: *test*
 ## <a name="test_cases"></a> Тест-кейсы
 [Test_plan.pdf](tech_documentation%2FTest_plan.pdf)
